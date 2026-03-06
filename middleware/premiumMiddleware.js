@@ -2,7 +2,8 @@ const User = require("../models/users");
 
 module.exports = async (req, res, next) => {
   try {
-    const user = await User.findByPk(req.user.userId);
+
+    const user = await User.findById(req.user.userId);
 
     if (!user || !user.isPremium) {
       const error = new Error("Premium membership required");
@@ -10,16 +11,19 @@ module.exports = async (req, res, next) => {
       throw error;
     }
 
-    // Attach full user if needed later
+    // attach user if needed later
     req.userDetails = user;
 
     next();
+
   } catch (error) {
+
     if (!error.statusCode) {
       error.statusCode = 500;
       error.message = "Server error";
     }
-    next(error); // Pass to centralized error handler
+
+    next(error);
+
   }
 };
-

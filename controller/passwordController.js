@@ -1,14 +1,11 @@
-const tranEmailApi = require("../utils/email");
-const bcrypt = require("bcryptjs");
-const ForgotPasswordRequests = require("../models/forgotPasswordReq");
-const User = require("../models/users");
-const path = require("path");
+const passwordService = require("../services/passwordService");
 
 
-//FORGOT PASSWORD
+// FORGOT PASSWORD
 
 const forgotPassword = async (req, res, next) => {
   try {
+
     const { email } = req.body;
 
     if (!email) {
@@ -17,34 +14,9 @@ const forgotPassword = async (req, res, next) => {
       throw err;
     }
 
-    const user = await User.findOne({ where: { email } });
-    if (!user) {
-      const err = new Error("User not found");
-      err.statusCode = 404;
-      throw err;
-    }
+    const result = await passwordService.forgotPassword(email);
 
-    const request = await ForgotPasswordRequests.create({
-      userId: user.id
-    });
-
-    const resetLink = `${process.env.API_BASE_URL}/password/resetpassword/${request.id}`;
-
-    await tranEmailApi.sendTransacEmail({
-      sender: {
-        email: process.env.EMAIL_SENDER,
-        name: "Expense Tracker"
-      },
-      to: [{ email }],
-      subject: "Reset your password",
-      htmlContent: `
-        <h3>Password Reset</h3>
-        <p>Click the link below to reset your password:</p>
-        <a href="${resetLink}">${resetLink}</a>
-      `
-    });
-
-    res.status(200).json({ message: "Reset email sent successfully" });
+    res.status(200).json(result);
 
   } catch (error) {
     error.statusCode = error.statusCode || 500;
@@ -53,25 +25,17 @@ const forgotPassword = async (req, res, next) => {
 };
 
 
-//RESET PASSWORD PAGE
+
+// RESET PASSWORD PAGE
 
 const resetPasswordPage = async (req, res, next) => {
   try {
+
     const { id } = req.params;
 
-    const request = await ForgotPasswordRequests.findOne({
-      where: { id, isActive: true }
-    });
+    const filePath = await passwordService.resetPasswordPage(id);
 
-    if (!request) {
-      const err = new Error("Link expired or invalid");
-      err.statusCode = 400;
-      throw err;
-    }
-
-    res.sendFile(
-      path.join(__dirname, "../Frontend/password/resetPassword.html")
-    );
+    res.sendFile(filePath);
 
   } catch (error) {
     error.statusCode = error.statusCode || 500;
@@ -80,10 +44,12 @@ const resetPasswordPage = async (req, res, next) => {
 };
 
 
-//UPDATE PASSWORD
+
+// UPDATE PASSWORD
 
 const updatePassword = async (req, res, next) => {
   try {
+
     const { id } = req.params;
     const { password } = req.body;
 
@@ -93,27 +59,7 @@ const updatePassword = async (req, res, next) => {
       throw err;
     }
 
-    const request = await ForgotPasswordRequests.findOne({
-      where: { id, isActive: true }
-    });
-
-    if (!request) {
-      const err = new Error("Invalid or expired link");
-      err.statusCode = 400;
-      throw err;
-    }
-
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    await User.update(
-      { password: hashedPassword },
-      { where: { id: request.userId } }
-    );
-
-    await ForgotPasswordRequests.update(
-      { isActive: false },
-      { where: { id } }
-    );
+    await passwordService.updatePassword(id, password);
 
     res.send("<h3>Password updated successfully. You can login now.</h3>");
 
@@ -123,9 +69,9 @@ const updatePassword = async (req, res, next) => {
   }
 };
 
+
 module.exports = {
   forgotPassword,
   resetPasswordPage,
   updatePassword
 };
-
