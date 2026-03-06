@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://98.130.136.166";
+const API_BASE_URL = "http://localhost:3000";
 
 //CENTRAL ERROR HANDLER
 
