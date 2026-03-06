@@ -6,6 +6,9 @@ const userRepo = require("../repositories/userRepository");
 
 const tranEmailApi = require("../utils/email");
 
+const Sib = require("sib-api-v3-sdk");
+const sendSmtpEmail = new Sib.SendSmtpEmail();
+
 
 // FORGOT PASSWORD
 
@@ -26,19 +29,22 @@ const forgotPassword = async (email) => {
   const resetLink =
     `${process.env.API_BASE_URL}/password/resetpassword/${request._id}`;
 
-  await tranEmailApi.sendTransacEmail({
-    sender: {
-      email: process.env.EMAIL_SENDER,
-      name: "Expense Tracker"
-    },
-    to: [{ email }],
-    subject: "Reset your password",
-    htmlContent: `
-      <h3>Password Reset</h3>
-      <p>Click the link below to reset your password:</p>
-      <a href="${resetLink}">${resetLink}</a>
-    `
-  });
+  sendSmtpEmail.sender = {
+    email: process.env.EMAIL_SENDER,
+    name: "Expense Tracker"
+  };
+
+  sendSmtpEmail.to = [{ email }];
+
+  sendSmtpEmail.subject = "Reset your password";
+
+  sendSmtpEmail.htmlContent = `
+<h3>Password Reset</h3>
+<p>Click the link below to reset your password:</p>
+<a href="${resetLink}">${resetLink}</a>
+`;
+
+  await tranEmailApi.sendTransacEmail(sendSmtpEmail);
 
   return { message: "Reset email sent successfully" };
 };
@@ -57,7 +63,10 @@ const resetPasswordPage = async (id) => {
     throw err;
   }
 
-  return path.join(__dirname, "../Frontend/password/resetPassword.html");
+  return path.resolve(
+    __dirname,
+    "../Frontend/password/resetPassword.html"
+  );
 };
 
 
@@ -78,8 +87,13 @@ const updatePassword = async (id, password) => {
 
   const user = await userRepo.findUserById(request.userId);
 
-  user.password = hashedPassword;
+  if (!user) {
+    const err = new Error("User not found");
+    err.statusCode = 404;
+    throw err;
+  }
 
+  user.password = hashedPassword;
   await user.save();
 
   await passwordRepo.deactivateRequest(id);

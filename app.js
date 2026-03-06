@@ -90,11 +90,12 @@ STACK: ${err.stack}
 
 
 //SERVER START
-connectDB();
-
-app.listen(process.env.PORT || 3000, () => {
+connectDB().then(()=>{
+  app.listen(process.env.PORT || 3000, () => {
   console.log("Server is running");
 });
+})
+
 
 
 

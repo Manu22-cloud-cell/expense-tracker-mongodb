@@ -183,14 +183,14 @@ function displayExpenseOnScreen(expense) {
     document.getElementById("note").value = expense.note || "";
     document.getElementById("category").value = expense.category;
     document.getElementById("add-btn").textContent = "Update";
-    editExpenseId = expense.id;
+    editExpenseId = expense._id;
   };
 
   const deleteBtn = document.createElement("button");
   deleteBtn.textContent = "Delete";
   deleteBtn.onclick = () => {
     axios
-      .delete(`${API_BASE_URL}/expenses/delete/${expense.id}`, {
+      .delete(`${API_BASE_URL}/expenses/delete/${expense._id}`, {
         headers: { Authorization: localStorage.getItem("token") }
       })
       .then(() => getAllExpenses(currentPage))

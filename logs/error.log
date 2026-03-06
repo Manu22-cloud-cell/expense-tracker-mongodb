@@ -45,3 +45,156 @@ STACK: InvalidAccessKeyId: The AWS Access Key Id you provided does not exist in 
     at Request.<anonymous> (C:\Users\DELL\Desktop\sharpenerProjects\Expense Tracker-Node.js Project\node_modules\aws-sdk\lib\request.js:688:12)
     at Request.callListeners (C:\Users\DELL\Desktop\sharpenerProjects\Expense Tracker-Node.js Project\node_modules\aws-sdk\lib\sequential_executor.js:116:18)
 ----------------------------------
+
+[2026-03-06T13:07:39.188Z]
+METHOD: POST
+URL: /expenses/add
+STATUS: 500
+MESSAGE: mongoose is not defined
+STACK: ReferenceError: mongoose is not defined
+    at addExpenses (C:\Users\DELL\Desktop\sharpenerProjects\Expense Tracker-Node.js Project -MongoDB\controller\expenseController.js:8:19)
+    at Layer.handleRequest (C:\Users\DELL\Desktop\sharpenerProjects\Expense Tracker-Node.js Project -MongoDB\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\DELL\Desktop\sharpenerProjects\Expense Tracker-Node.js Project -MongoDB\node_modules\router\lib\route.js:157:13)
+    at module.exports (C:\Users\DELL\Desktop\sharpenerProjects\Expense Tracker-Node.js Project -MongoDB\middleware\auth.js:15:5)
+    at Layer.handleRequest (C:\Users\DELL\Desktop\sharpenerProjects\Expense Tracker-Node.js Project -MongoDB\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\DELL\Desktop\sharpenerProjects\Expense Tracker-Node.js Project -MongoDB\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (C:\Users\DELL\Desktop\sharpenerProjects\Expense Tracker-Node.js Project -MongoDB\node_modules\router\lib\route.js:117:3)
+    at handle (C:\Users\DELL\Desktop\sharpenerProjects\Expense Tracker-Node.js Project -MongoDB\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (C:\Users\DELL\Desktop\sharpenerProjects\Expense Tracker-Node.js Project -MongoDB\node_modules\router\lib\layer.js:152:17)
+    at C:\Users\DELL\Desktop\sharpenerProjects\Expense Tracker-Node.js Project -MongoDB\node_modules\router\index.js:295:15
+----------------------------------
+
+[2026-03-06T13:10:21.534Z]
+METHOD: POST
+URL: /expenses/add
+STATUS: 500
+MESSAGE: expenseRepo is not defined
+STACK: ReferenceError: expenseRepo is not defined
+    at C:\Users\DELL\Desktop\sharpenerProjects\Expense Tracker-Node.js Project -MongoDB\controller\expenseController.js:29:7
+    at ClientSession.withTransaction (C:\Users\DELL\Desktop\sharpenerProjects\Expense Tracker-Node.js Project -MongoDB\node_modules\mongoose\node_modules\mongodb\lib\sessions.js:501:37)
+    at addExpenses (C:\Users\DELL\Desktop\sharpenerProjects\Expense Tracker-Node.js Project -MongoDB\controller\expenseController.js:15:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+----------------------------------
+
+[2026-03-06T13:29:35.747Z]
+METHOD: DELETE
+URL: /expenses/delete/undefined
+STATUS: 500
+MESSAGE: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "Expense"
+STACK: CastError: Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "Expense"
+    at SchemaObjectId.cast (C:\Users\DELL\Desktop\sharpenerProjects\Expense Tracker-Node.js Project -MongoDB\node_modules\mongoose\lib\schema\objectId.js:253:11)
+    at SchemaType.applySetters (C:\Users\DELL\Desktop\sharpenerProjects\Expense Tracker-Node.js Project -MongoDB\node_modules\mongoose\lib\schemaType.js:1279:12)
+    at SchemaType.castForQuery (C:\Users\DELL\Desktop\sharpenerProjects\Expense Tracker-Node.js Project -MongoDB\node_modules\mongoose\lib\schemaType.js:1705:17)
+    at cast (C:\Users\DELL\Desktop\sharpenerProjects\Expense Tracker-Node.js Project -MongoDB\node_modules\mongoose\lib\cast.js:386:32)
+    at Query.cast (C:\Users\DELL\Desktop\sharpenerProjects\Expense Tracker-Node.js Project -MongoDB\node_modules\mongoose\lib\query.js:5088:12)
+    at Query._castConditions (C:\Users\DELL\Desktop\sharpenerProjects\Expense Tracker-Node.js Project -MongoDB\node_modules\mongoose\lib\query.js:2376:10)
+    at model.Query._findOne (C:\Users\DELL\Desktop\sharpenerProjects\Expense Tracker-Node.js Project -MongoDB\node_modules\mongoose\lib\query.js:2716:8)
+    at model.Query.exec (C:\Users\DELL\Desktop\sharpenerProjects\Expense Tracker-Node.js Project -MongoDB\node_modules\mongoose\lib\query.js:4687:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async Object.deleteExpense (C:\Users\DELL\Desktop\sharpenerProjects\Expense Tracker-Node.js Project -MongoDB\services\expenseService.js:126:25)
+----------------------------------
+
+[2026-03-06T13:50:58.047Z]
+METHOD: POST
+URL: /password/forgotpassword
+STATUS: 500
+MESSAGE: Unauthorized
+STACK: Error: Unauthorized
+    at Request.callback (C:\Users\DELL\Desktop\sharpenerProjects\Expense Tracker-Node.js Project -MongoDB\node_modules\superagent\lib\node\index.js:688:13)
+    at C:\Users\DELL\Desktop\sharpenerProjects\Expense Tracker-Node.js Project -MongoDB\node_modules\superagent\lib\node\index.js:891:18
+    at IncomingMessage.<anonymous> (C:\Users\DELL\Desktop\sharpenerProjects\Expense Tracker-Node.js Project -MongoDB\node_modules\superagent\lib\node\parsers\json.js:17:7)
+    at IncomingMessage.emit (node:events:520:35)
+    at IncomingMessage.emit (node:domain:489:12)
+    at endReadableNT (node:internal/streams/readable:1701:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:89:21)
+----------------------------------
+
+[2026-03-06T14:21:38.392Z]
+METHOD: POST
+URL: /password/forgotpassword
+STATUS: 500
+MESSAGE: Unauthorized
+STACK: Error: Unauthorized
+    at Request.callback (C:\Users\DELL\Desktop\sharpenerProjects\Expense Tracker-Node.js Project -MongoDB\node_modules\superagent\lib\node\index.js:688:13)
+    at C:\Users\DELL\Desktop\sharpenerProjects\Expense Tracker-Node.js Project -MongoDB\node_modules\superagent\lib\node\index.js:891:18
+    at IncomingMessage.<anonymous> (C:\Users\DELL\Desktop\sharpenerProjects\Expense Tracker-Node.js Project -MongoDB\node_modules\superagent\lib\node\parsers\json.js:17:7)
+    at IncomingMessage.emit (node:events:520:35)
+    at IncomingMessage.emit (node:domain:489:12)
+    at endReadableNT (node:internal/streams/readable:1701:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:89:21)
+----------------------------------
+
+[2026-03-06T14:51:15.388Z]
+METHOD: POST
+URL: /password/forgotpassword
+STATUS: 500
+MESSAGE: Unauthorized
+STACK: Error: Unauthorized
+    at Request.callback (C:\Users\DELL\Desktop\sharpenerProjects\Expense Tracker-Node.js Project -MongoDB\node_modules\superagent\lib\node\index.js:688:13)
+    at C:\Users\DELL\Desktop\sharpenerProjects\Expense Tracker-Node.js Project -MongoDB\node_modules\superagent\lib\node\index.js:891:18
+    at IncomingMessage.<anonymous> (C:\Users\DELL\Desktop\sharpenerProjects\Expense Tracker-Node.js Project -MongoDB\node_modules\superagent\lib\node\parsers\json.js:17:7)
+    at IncomingMessage.emit (node:events:520:35)
+    at IncomingMessage.emit (node:domain:489:12)
+    at endReadableNT (node:internal/streams/readable:1701:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:89:21)
+----------------------------------
+
+[2026-03-06T14:55:31.309Z]
+METHOD: POST
+URL: /password/forgotpassword
+STATUS: 500
+MESSAGE: Unauthorized
+STACK: Error: Unauthorized
+    at Request.callback (C:\Users\DELL\Desktop\sharpenerProjects\Expense Tracker-Node.js Project -MongoDB\node_modules\superagent\lib\node\index.js:688:13)
+    at C:\Users\DELL\Desktop\sharpenerProjects\Expense Tracker-Node.js Project -MongoDB\node_modules\superagent\lib\node\index.js:891:18
+    at IncomingMessage.<anonymous> (C:\Users\DELL\Desktop\sharpenerProjects\Expense Tracker-Node.js Project -MongoDB\node_modules\superagent\lib\node\parsers\json.js:17:7)
+    at IncomingMessage.emit (node:events:520:35)
+    at IncomingMessage.emit (node:domain:489:12)
+    at endReadableNT (node:internal/streams/readable:1701:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:89:21)
+----------------------------------
+
+[2026-03-06T16:03:00.339Z]
+METHOD: POST
+URL: /password/forgotpassword
+STATUS: 500
+MESSAGE: Unauthorized
+STACK: Error: Unauthorized
+    at Request.callback (C:\Users\DELL\Desktop\sharpenerProjects\Expense Tracker-Node.js Project -MongoDB\node_modules\superagent\lib\node\index.js:688:13)
+    at C:\Users\DELL\Desktop\sharpenerProjects\Expense Tracker-Node.js Project -MongoDB\node_modules\superagent\lib\node\index.js:891:18
+    at IncomingMessage.<anonymous> (C:\Users\DELL\Desktop\sharpenerProjects\Expense Tracker-Node.js Project -MongoDB\node_modules\superagent\lib\node\parsers\json.js:17:7)
+    at IncomingMessage.emit (node:events:520:35)
+    at IncomingMessage.emit (node:domain:489:12)
+    at endReadableNT (node:internal/streams/readable:1701:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:89:21)
+----------------------------------
+
+[2026-03-06T16:10:16.274Z]
+METHOD: POST
+URL: /password/forgotpassword
+STATUS: 500
+MESSAGE: Unauthorized
+STACK: Error: Unauthorized
+    at Request.callback (C:\Users\DELL\Desktop\sharpenerProjects\Expense Tracker-Node.js Project -MongoDB\node_modules\superagent\lib\node\index.js:688:13)
+    at C:\Users\DELL\Desktop\sharpenerProjects\Expense Tracker-Node.js Project -MongoDB\node_modules\superagent\lib\node\index.js:891:18
+    at IncomingMessage.<anonymous> (C:\Users\DELL\Desktop\sharpenerProjects\Expense Tracker-Node.js Project -MongoDB\node_modules\superagent\lib\node\parsers\json.js:17:7)
+    at IncomingMessage.emit (node:events:520:35)
+    at IncomingMessage.emit (node:domain:489:12)
+    at endReadableNT (node:internal/streams/readable:1701:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:89:21)
+----------------------------------
+
+[2026-03-06T16:30:50.470Z]
+METHOD: POST
+URL: /password/forgotpassword
+STATUS: 500
+MESSAGE: Unauthorized
+STACK: Error: Unauthorized
+    at Request.callback (C:\Users\DELL\Desktop\sharpenerProjects\Expense Tracker-Node.js Project -MongoDB\node_modules\superagent\lib\node\index.js:688:13)
+    at C:\Users\DELL\Desktop\sharpenerProjects\Expense Tracker-Node.js Project -MongoDB\node_modules\superagent\lib\node\index.js:891:18
+    at IncomingMessage.<anonymous> (C:\Users\DELL\Desktop\sharpenerProjects\Expense Tracker-Node.js Project -MongoDB\node_modules\superagent\lib\node\parsers\json.js:17:7)
+    at IncomingMessage.emit (node:events:520:35)
+    at IncomingMessage.emit (node:domain:489:12)
+    at endReadableNT (node:internal/streams/readable:1701:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:89:21)
+----------------------------------
