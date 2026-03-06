@@ -1,0 +1,47 @@
+
+[2025-12-18T06:37:53.727Z]
+METHOD: POST
+URL: /users/login
+STATUS: 401
+MESSAGE: Incorrect password
+STACK: Error: Incorrect password
+    at userLogin (C:\Users\DELL\Desktop\sharpenerProjects\Expense Tracker-Node.js Project\controller\userController.js:75:19)
+----------------------------------
+
+[2025-12-18T06:38:51.357Z]
+METHOD: POST
+URL: /users/login
+STATUS: 404
+MESSAGE: User not found
+STACK: Error: User not found
+    at userLogin (C:\Users\DELL\Desktop\sharpenerProjects\Expense Tracker-Node.js Project\controller\userController.js:67:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+----------------------------------
+
+[2025-12-19T16:18:37.484Z]
+METHOD: GET
+URL: /reports/download?type=monthly
+STATUS: 500
+MESSAGE: null
+STACK: AggregateError [ETIMEDOUT]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+----------------------------------
+
+[2025-12-22T04:54:27.210Z]
+METHOD: GET
+URL: /reports/download?type=monthly
+STATUS: 403
+MESSAGE: The AWS Access Key Id you provided does not exist in our records.
+STACK: InvalidAccessKeyId: The AWS Access Key Id you provided does not exist in our records.
+    at Request.extractError (C:\Users\DELL\Desktop\sharpenerProjects\Expense Tracker-Node.js Project\node_modules\aws-sdk\lib\services\s3.js:757:35)
+    at Request.callListeners (C:\Users\DELL\Desktop\sharpenerProjects\Expense Tracker-Node.js Project\node_modules\aws-sdk\lib\sequential_executor.js:106:20)
+    at Request.emit (C:\Users\DELL\Desktop\sharpenerProjects\Expense Tracker-Node.js Project\node_modules\aws-sdk\lib\sequential_executor.js:78:10)
+    at Request.emit (C:\Users\DELL\Desktop\sharpenerProjects\Expense Tracker-Node.js Project\node_modules\aws-sdk\lib\request.js:686:14)
+    at Request.transition (C:\Users\DELL\Desktop\sharpenerProjects\Expense Tracker-Node.js Project\node_modules\aws-sdk\lib\request.js:22:10)
+    at AcceptorStateMachine.runTo (C:\Users\DELL\Desktop\sharpenerProjects\Expense Tracker-Node.js Project\node_modules\aws-sdk\lib\state_machine.js:14:12)
+    at C:\Users\DELL\Desktop\sharpenerProjects\Expense Tracker-Node.js Project\node_modules\aws-sdk\lib\state_machine.js:26:10
+    at Request.<anonymous> (C:\Users\DELL\Desktop\sharpenerProjects\Expense Tracker-Node.js Project\node_modules\aws-sdk\lib\request.js:38:9)
+    at Request.<anonymous> (C:\Users\DELL\Desktop\sharpenerProjects\Expense Tracker-Node.js Project\node_modules\aws-sdk\lib\request.js:688:12)
+    at Request.callListeners (C:\Users\DELL\Desktop\sharpenerProjects\Expense Tracker-Node.js Project\node_modules\aws-sdk\lib\sequential_executor.js:116:18)
+----------------------------------

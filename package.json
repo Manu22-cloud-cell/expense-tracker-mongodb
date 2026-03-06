@@ -1,0 +1,37 @@
+{
+  "name": "expense-tracker-node.js-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Manu22-cloud-cell/Expense-Tracker-App-Node.js-Project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Manu22-cloud-cell/Expense-Tracker-App-Node.js-Project/issues"
+  },
+  "homepage": "https://github.com/Manu22-cloud-cell/Expense-Tracker-App-Node.js-Project#readme",
+  "dependencies": {
+    "@google/genai": "^1.33.0",
+    "@google/generative-ai": "^0.24.1",
+    "aws-sdk": "^2.1693.0",
+    "bcryptjs": "^3.0.3",
+    "cashfree-pg": "^5.1.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "morgan": "^1.10.1",
+    "mysql2": "^3.15.3",
+    "sequelize": "^6.37.7",
+    "sib-api-v3-sdk": "^8.5.0",
+    "uuid": "^13.0.0"
+  }
+}

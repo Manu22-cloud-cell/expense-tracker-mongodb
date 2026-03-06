@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Expense Reports</title>
+  <link rel="stylesheet" href="/reports/reports.css">
+</head>
+
+<body>
+
+  <h2>Expense Reports</h2>
+
+  <!-- Premium warning -->
+  <div id="premium-warning" class="hidden">
+    <p>Upgrade to Premium to access reports</p>
+  </div>
+
+  <!-- Report section -->
+  <div id="report-section">
+
+    <!-- Report type -->
+    <label>
+      Report Type:
+      <select id="report-type">
+        <option value="daily">Daily</option>
+        <option value="monthly">Monthly</option>
+        <option value="yearly">Yearly</option>
+      </select>
+    </label>
+
+    <!-- Monthly input -->
+    <label>
+      Month:
+      <input type="month" id="month-input" />
+    </label>
+
+    <!-- Yearly input -->
+    <label>
+      Year:
+      <input type="number" id="year-input" placeholder="Year (2025)" min="2000" />
+    </label>
+
+    <br /><br />
+
+    <!-- Actions -->
+    <button onclick="fetchReport()">Generate Report</button>
+    <button id="download-btn" onclick="downloadReport()">Download</button>
+
+    <!-- Report table -->
+    <table id="report-table" border="1" cellpadding="6"></table>
+
+    <!-- Download link -->
+    <div id="download-link-container" style="margin-top:10px;"></div>
+
+    <!-- Download history -->
+    <h3>Downloaded Reports</h3>
+    <ul id="download-history"></ul>
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="reports.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Payment Success</title>
+</head>
+<body style="font-family:Arial; text-align:center; margin-top:100px;">
+  <h2 id="msg">Processing your payment...</h2>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.5.1/axios.min.js"></script>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const orderId = params.get("orderId");
+
+axios.get(`http://98.130.136.166/payment/verify/${orderId}`)
+.then(res => {
+
+  document.getElementById("msg").innerHTML = 
+    `<h1>Payment ${res.data.status}!</h1>
+     <p>You are now a Premium Member.</p>
+     <p>Redirecting...</p>`;
+
+  // Save NEW token if backend gave it
+  if (res.data.token) {
+    localStorage.setItem("token", res.data.token);
+  }
+
+  localStorage.setItem("isPremium", "true");
+  localStorage.setItem("username",res.data.username);
+
+  setTimeout(() => {
+    window.location.href = "../addExpenses/expense.html";
+  }, 2000);
+})
+.catch(err => {
+  document.body.innerHTML = `<h1 style="color:red;">Payment Verification Failed!</h1>`;
+});
+  </script>
+</body>
+</html>
