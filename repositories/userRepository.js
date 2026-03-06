@@ -1,4 +1,5 @@
 const User = require("../models/users");
+const mongoose = require("mongoose");
 
 const findUserByEmail = (email) => {
   return User.findOne({ email });
@@ -13,8 +14,24 @@ const findUserById = (id) => {
   return User.findById(id);
 };
 
+const updateUserTotalExpense = (userId, amount, session) => {
+
+  const options = { new: true };
+
+  if (session) {
+    options.session = session;
+  }
+
+  return User.findByIdAndUpdate(
+    new mongoose.Types.ObjectId(userId),
+    { $inc: { totalExpense: amount } },
+    options
+  );
+};
+
 module.exports = {
   findUserByEmail,
   createUser,
-  findUserById
+  findUserById,
+  updateUserTotalExpense
 };
