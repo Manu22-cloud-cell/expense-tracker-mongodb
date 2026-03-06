@@ -1,20 +1,24 @@
-const Sequelize = require("sequelize");
-const sequelize = require("../utils/db-connection");
+const mongoose = require("mongoose");
 
-const DownloadedReport = sequelize.define("DownloadedReport", {
-  id: {
-    type: Sequelize.INTEGER,
-    autoIncrement: true,
-    primaryKey: true
-  },
-  fileUrl: {
-    type: Sequelize.TEXT,
-    allowNull: false
-  },
-  downloadedAt: {
-    type: Sequelize.DATE,
-    allowNull: false
-  }
-});
+const downloadedReportSchema = new mongoose.Schema(
+  {
+    fileUrl: {
+      type: String,
+      required: true
+    },
 
-module.exports = DownloadedReport;
+    downloadedAt: {
+      type: Date,
+      default: Date.now
+    },
+
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true
+    }
+  },
+  { timestamps: true }
+);
+
+module.exports = mongoose.model("DownloadedReport", downloadedReportSchema);

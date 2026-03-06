@@ -1,29 +1,33 @@
-const { Sequelize, DataTypes} = require('sequelize');
-const sequelize = require('../utils/db-connection');
+const mongoose = require("mongoose");
 
-const Expenses = sequelize.define('expenses', {
-    id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true,
-        allowNull: false
-    },
+const expenseSchema = new mongoose.Schema(
+  {
     amount: {
-        type: DataTypes.FLOAT,
-        allowNull: false
+      type: Number,
+      required: true
     },
-    description: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    category: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    note: {
-        type: DataTypes.STRING,
-        allowNull: true
-    }
-});
 
-module.exports = Expenses;
+    description: {
+      type: String,
+      required: true
+    },
+
+    category: {
+      type: String,
+      required: true
+    },
+
+    note: {
+      type: String
+    },
+
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true
+    }
+  },
+  { timestamps: true }
+);
+
+module.exports = mongoose.model("Expense", expenseSchema);

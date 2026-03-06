@@ -6,7 +6,7 @@ const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
 
-const db = require("./utils/db-connection");
+const connectDB = require("./utils/db-connection");
 const userRouter = require("./routes/userRoutes");
 const expenseRouter = require("./routes/expenseRoutes");
 const paymentRoutes = require("./routes/paymentRoutes");
@@ -15,10 +15,6 @@ const passwordRoutes = require("./routes/passwordRoutes");
 const reportRoutes = require("./routes/reportRoutes");
 
 const app = express();
-
-// importing all the models
-require("./models");
-
 
 //LOGGING SETUP
 
@@ -94,16 +90,11 @@ STACK: ${err.stack}
 
 
 //SERVER START
+connectDB();
 
-db.sync()
-  .then(() => {
-    app.listen(process.env.PORT || 3000, () => {
-      console.log("Server is running");
-    });
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+app.listen(process.env.PORT || 3000, () => {
+  console.log("Server is running");
+});
 
 
 
