@@ -1,20 +1,16 @@
-const User = require("../models/users");
-const sequelize = require("../utils/db-connection");
+const leaderboardService = require("../services/leaderboardService");
 
 exports.getLeaderboard = async (req, res, next) => {
   try {
-    const leaderboard = await User.findAll({
-      attributes: ["userName", "totalExpense"],
-      order: [["totalExpense", "DESC"]]
-    });
+
+    const leaderboard = await leaderboardService.getLeaderboard();
 
     res.status(200).json(leaderboard);
 
   } catch (error) {
+
     error.statusCode = error.statusCode || 500;
     next(error);
+
   }
 };
-
-
-

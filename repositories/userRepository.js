@@ -29,9 +29,17 @@ const updateUserTotalExpense = (userId, amount, session) => {
   );
 };
 
+const getLeaderboard = () => {
+  return User.find()
+    .select("userName totalExpense")
+    .sort({ totalExpense: -1 })
+    .limit(10);
+};
+
 module.exports = {
   findUserByEmail,
   createUser,
   findUserById,
-  updateUserTotalExpense
+  updateUserTotalExpense,
+  getLeaderboard,
 };
